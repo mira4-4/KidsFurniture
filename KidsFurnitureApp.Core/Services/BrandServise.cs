@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 
 namespace KidsFurnitureApp.Core.Services
 {
-    public class BrandServise : IBrandService
+    public class BrandService : IBrandService
     {
         private readonly ApplicationDbContext _context;
 
-        public BrandServise(ApplicationDbContext context)
+        public BrandService(ApplicationDbContext context)
         {
             _context = context;
-        }
+        }        
+
         public Brand GetBrandById(int brandId)
         {
             return _context.Brands.Find(brandId);
@@ -28,6 +29,7 @@ namespace KidsFurnitureApp.Core.Services
             List<Brand> brands = _context.Brands.ToList();
             return brands;
         }
+
         public List<Product> GetProductsByBrand(int brandId)
         {
             return _context.Products

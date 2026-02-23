@@ -12,6 +12,6 @@ namespace KidsFurnitureApp.Core.Contracts
     {
         List<Brand> GetBrands();
         Brand GetBrandById(int brandId);
-        List<Product> GetBrandByBrand(int brandId);
+        List<Product> GetProductsByBrand(int brandId);
     }
 }
