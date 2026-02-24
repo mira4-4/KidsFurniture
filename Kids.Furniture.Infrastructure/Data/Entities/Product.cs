@@ -26,10 +26,10 @@ namespace KidsFurniture.Infrastructure.Data.Entities
         public virtual Category Category { get; set; }
 
         public string Picture { get; set; }
+        public string Description { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
-        public int Description { get; set; }
         public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
 
 

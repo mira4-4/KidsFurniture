@@ -10,10 +10,10 @@ namespace KidsFurnitureApp.Core.Contracts
 {
     public interface IProductService
     {
-        bool Create(string name, int brandId, int categoryId, string picture, int quantity, decimal price,
+        bool Create(string name, int brandId, int categoryId, string picture, string description, int quantity, decimal price,
             decimal discount);
 
-        bool Update(int productId, string name, int brandId, int categoryId, string picture, int quantity, 
+        bool Update(int productId, string name, int brandId, int categoryId, string picture, string description, int quantity, 
             decimal price, decimal discount);
 
         List<Product> GetProducts();
@@ -22,7 +22,6 @@ namespace KidsFurnitureApp.Core.Contracts
 
         bool RemoveById(int productId);
 
-        List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName);
-
+        List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName);       
     }
 }

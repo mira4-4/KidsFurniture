@@ -19,7 +19,7 @@ namespace KidsFurnitureApp.Core.Services
         {
             _context = context;
         }
-        public bool Create(string name, int brandId, int categoryId, string picture, int quantity, decimal price,
+        public bool Create(string name, int brandId, int categoryId, string picture, string description, int quantity, decimal price,
             decimal discount)
         {
             Product item = new Product
@@ -28,6 +28,7 @@ namespace KidsFurnitureApp.Core.Services
                 Brand = _context.Brands.Find(brandId),
                 Category = _context.Categories.Find(categoryId),
                 Picture = picture,
+                Description = description, 
                 Quantity = quantity,
                 Price = price,
                 Discount = discount
@@ -77,7 +78,7 @@ namespace KidsFurnitureApp.Core.Services
             _context.Remove(product);
             return _context.SaveChanges() != 0;
         }
-        public bool Update(int productId, string name, int brandId, int categoryId, string picture,
+        public bool Update(int productId, string name, int brandId, int categoryId, string picture, string description, 
     int quantity, decimal price, decimal discount)
         {
             var product = GetProductById(productId);
