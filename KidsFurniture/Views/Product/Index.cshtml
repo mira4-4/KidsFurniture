@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<KidsFurniture.Models.Product.ProductIndexVM>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Индекс";
 }
-<h1>Index</h1>
+<h1>Индекс</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Създай нов</a>
 </p>
 <form asp-controller="Product" asp-action="Index" method="get">
     <p>
-        Brand: <input type="text" name="SearchStringBrandName" />
-        Category: <input type="text" name="SearchStringCategoryName" />
-        <input type="submit" value="Filter" />
+        Производител: <input type="text" name="SearchStringBrandName" />
+        Категория: <input type="text" name="SearchStringCategoryName" />
+        <input type="submit" value="Филтър" />
     </p>
 </form>
 <table class="table">
@@ -19,15 +19,9 @@
             <th>
 @Html.DisplayNameFor(model => model.ProductName)
             </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.BrandId)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.BrandName)
             </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.CategoryId)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
@@ -56,22 +50,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
-    @*<td>
-@Html.DisplayFor(modelItem => item.BrandId)
-</td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.BrandName)
                 </td>
-    @*<td>
-@Html.DisplayFor(modelItem => item.CategoryId)
-</td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
                 <td>
                     <img src="@Html.DisplayFor(modelItem => item.Picture)"
                          alt="Image" width="100" />
-                    @*@Html.DisplayFor(modelItem => item.Pictute)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -87,12 +74,12 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-
-    warning">Edit</a>
+    warning">Редактирай</a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-
-    success">Details</a>
+    success">Детайли</a>
 
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-
-    danger">Delete</a>
+    danger">Изтрий</a>
 
                 </td>
             </tr>
