@@ -26,4 +26,8 @@
     <ProjectReference Include="..\KidsFurnitureApp.Core\KidsFurnitureApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Client\" />
+  </ItemGroup>
+
 </Project>

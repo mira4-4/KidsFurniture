@@ -76,21 +76,21 @@
                     @Html.DisplayFor(modelItem => item.Discount) %
                 </td>
                 <td>
-                    @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Детайли</a>
+                    @if (this.User.Identity.IsAuthenticated)
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-
-    warning">Редактирай</a>
+                        <a asp-action="Order" asp-route-id="@item.Id" class="btn btn-warning">Поръчай</a>
+
+                        
                     }
                     @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
                     {
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-
-    success">Детайли</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Редактирай</a>
+                       
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
                     }
-                    @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-
-    danger">Изтрий</a>
-                    }
+                   
+                    
 
                 </td>
             </tr>

@@ -28,6 +28,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Продукти</a>
                         </li>
+                       
+
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="MyOrders">Моите поръчки</a>
+                            </li>
+                        }
+
+                        
                         @if ((this.User.Identity.IsAuthenticated)&& (this.User.IsInRole("Administrator")))
                         {
                             <li class="dropdown">
