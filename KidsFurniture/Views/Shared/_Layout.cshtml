@@ -28,6 +28,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Продукти</a>
                         </li>
+                        <li class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Videnov">Videnov</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Nachevi90">Nachevi90</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Kambo Furniture">Kambo Furniture</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="MIM BULGARIA">MIM BULGARIA</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mebeliss">Mebeliss</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Meblex">Meblex</a></li>
+                            </ul>
+
+                        </li>
                        
 
                         @if (this.User.Identity.IsAuthenticated)
@@ -47,8 +63,9 @@
                             </button>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/Statistics/Clients">Клиенти</a></li>
-                                <li><a class="dropdown-item" href="/Statistics/Orders">Поръчки</a></li>
+                                <li><a class="dropdown-item" href="/Client/Index">Клиенти</a></li>
+                                <li><a class="dropdown-item" href="/Order/Index">Поръчки</a></li>
+                                <li><a class="dropdown-item" href="/Statistic/Index">Статистика</a></li>
                             </ul>
                         </li>
                         }
