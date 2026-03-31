@@ -1,0 +1,16 @@
+﻿@using KidsFurniture.Infrastructure.Data.Entities
+@model List<Product>
+
+<h2>Всички продукти</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item.ProductName
+            <a href="/Favorites/AddToFavorites/@item.Id">❤️ Добави в любими</a>
+        </li>
+    }
+</ul>
+
+<a href="/Favorites/MyFavorites">Виж любими</a>

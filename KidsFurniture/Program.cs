@@ -38,6 +38,8 @@ namespace KidsFurniture
             builder.Services.AddTransient<IProductService, ProductService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
             builder.Services.AddTransient<IStatisticService, StatisticService>();
+            builder.Services.AddTransient<IFavoritesService, FavoriteService>();
+
 
 
             var app = builder.Build();
