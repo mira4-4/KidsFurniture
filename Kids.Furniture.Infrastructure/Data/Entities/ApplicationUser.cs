@@ -20,5 +20,7 @@ namespace KidsFurniture.Infrastructure.Data.Entities
         [Required]
         [MaxLength(50)]
         public string Address { get; set; } = null!;
+        public virtual IEnumerable<Favorites> Favorites { get; set; } = new List<Favorites>();
+
     }
 }

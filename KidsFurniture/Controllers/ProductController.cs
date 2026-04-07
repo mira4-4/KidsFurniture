@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using System.Security.Claims;
+
 namespace KidsFurniture.Controllers
 {
     [Authorize(Roles = "Administrator")]
@@ -64,6 +66,7 @@ namespace KidsFurniture.Controllers
         [AllowAnonymous]
         public ActionResult Index(string searchStringCategoryName, string searchStringBrandName)
         {
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<ProductIndexVM> products = _productService.GetProducts(searchStringCategoryName, searchStringBrandName)
                 .Select(product => new ProductIndexVM
                 {
@@ -77,9 +80,10 @@ namespace KidsFurniture.Controllers
                     Description = product.Description,
                     Quantity = product.Quantity,
                     Price = product.Price,
-                    Discount = product.Discount
-
+                    Discount = product.Discount,
+                    IsFavorite = userId != null && product.Favorites.Any(f => f.UserId == userId)
                 }).ToList();
+
             return this.View(products);
         }
 

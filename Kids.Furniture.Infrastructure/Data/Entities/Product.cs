@@ -31,6 +31,7 @@ namespace KidsFurniture.Infrastructure.Data.Entities
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
         public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
+        public virtual IEnumerable<Favorites> Favorites { get; set; } = new List<Favorites>();
 
 
     }

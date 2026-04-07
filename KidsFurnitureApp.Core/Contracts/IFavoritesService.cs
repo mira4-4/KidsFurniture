@@ -11,12 +11,12 @@ namespace KidsFurnitureApp.Core.Contracts
     
     public interface IFavoritesService
     {
-        Task<IEnumerable<Product>> GetUserFavoritesAsync(string userId);
+        IEnumerable<Product> GetUserFavorites(string userId);
 
-        Task<bool> IsProductInFavoritesAsync(string userId, int productId);
+        bool IsProductInFavorites(string userId, int productId);
 
-        Task AddToFavoritesAsync(string userId, int productId);
+        bool AddToFavorites(string userId, int productId);
 
-        Task RemoveFromFavoritesAsync(string userId, int productId);
+        bool RemoveFromFavorites(string userId, int productId);
     }
 }

@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace KidsFurniture.Controllers
 {
-    public class FavoritesController : Controller 
+    public class FavoritesController : Controller
     {
         private readonly IFavoritesService favoritesService;
 
@@ -19,7 +19,7 @@ namespace KidsFurniture.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!User.Identity.IsAuthenticated)
@@ -27,7 +27,7 @@ namespace KidsFurniture.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<ProductIndexVM> products = (await favoritesService.GetUserFavoritesAsync(userId))
+            List<ProductIndexVM> products = (favoritesService.GetUserFavorites(userId))
                 .Select(products => new ProductIndexVM
                 {
                     Id = products.Id,
@@ -46,7 +46,7 @@ namespace KidsFurniture.Controllers
         }
         [HttpPost]
 
-        public async Task<ActionResult> Add(int productId)
+        public ActionResult Add(int productId)
         {
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!User.Identity.IsAuthenticated)
@@ -54,16 +54,16 @@ namespace KidsFurniture.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            bool isInFavorites = await favoritesService.IsProductInFavoritesAsync(userId, productId);
+            bool isInFavorites = favoritesService.IsProductInFavorites(userId, productId);
             if (!isInFavorites)
             {
-                await favoritesService.AddToFavoritesAsync(userId, productId);
+                favoritesService.AddToFavorites(userId, productId);
             }
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
 
-        public async Task<IActionResult> Remove(int productId)
+        public IActionResult Remove(int productId)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -73,10 +73,10 @@ namespace KidsFurniture.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-            bool isInFavorites = await favoritesService.IsProductInFavoritesAsync(userId, productId);
-            if (!isInFavorites)
+            bool isInFavorites = favoritesService.IsProductInFavorites(userId, productId);
+            if (isInFavorites)
             {
-                favoritesService.RemoveFromFavoritesAsync(userId, productId).Wait();
+                favoritesService.RemoveFromFavorites(userId, productId);
             }
             return RedirectToAction(nameof(Index));
         }

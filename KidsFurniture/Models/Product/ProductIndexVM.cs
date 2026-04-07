@@ -33,5 +33,7 @@ namespace KidsFurniture.Models.Product
 
         [Display(Name = "Отстъпка")]
         public decimal Discount { get; set; }
+
+        public bool IsFavorite { get; set; }
     }
 }

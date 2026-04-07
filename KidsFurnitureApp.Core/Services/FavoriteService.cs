@@ -21,30 +21,41 @@ namespace KidsFurnitureApp.Core.Services
             _context = context;
         }
 
-        public Task AddToFavoritesAsync(string userId, int productId)
+        public bool AddToFavorites(string userId, int productId)
         {
-            throw new NotImplementedException();
+            var userProduct = new Favorites
+            {
+                UserId = userId,
+                ProductId = productId
+            };
+             _context.Favorites.Add(userProduct);
+            return _context.SaveChanges() != 0;
         }
 
-        public Task<IEnumerable<Product>> GetUserFavoritesAsync(string userId)
+        public IEnumerable<Product> GetUserFavorites(string userId)
         {
-            throw new NotImplementedException();
+            return _context.Favorites
+                .Where(fv => fv.UserId == userId)
+                .Select(fv => fv.Product).ToList();
         }
 
-        public Task<bool> IsProductInFavoritesAsync(string userId, int productId)
+        public bool IsProductInFavorites(string userId, int productId)
         {
-            throw new NotImplementedException();
+            return _context.Favorites
+                .Any(fv => fv.UserId == userId && fv.ProductId == productId);
         }
 
-        public async Task RemoveFromFavoritesAsync(string userId, int productId)
+        public bool RemoveFromFavorites(string userId, int productId)
         {
-            var favorite = await _context.Favorites.FirstOrDefaultAsync(fv => fv.UserId== userId && fv.ProductId == productId);
+            var favorite = _context.Favorites.FirstOrDefault(fv => fv.UserId== userId && fv.ProductId == productId);
 
-            if (favorite == null)
+            if (favorite != null)
             {
                 _context.Favorites.Remove(favorite);
-                await _context.SaveChangesAsync();
+                
             }
+            return _context.SaveChanges() != 0;
+
         }
 
     }
