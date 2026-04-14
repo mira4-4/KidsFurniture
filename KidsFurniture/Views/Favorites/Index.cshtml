@@ -1,102 +1,100 @@
 ﻿@model IEnumerable<KidsFurniture.Models.Product.ProductIndexVM>
+
 @{
-    ViewData["Title"] = "Индекс";
+    ViewData["Title"] = "Любими";
 }
-<h1>Любими</h1>
 
+<div class="container py-5">
+    <div class="mb-5">
+        <h1 class="fw-bold mb-2">Любими продукти</h1>
+        <span class="text-secondary d-block">
+            Вашите запазени мебели ❤️
+        </span>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BrandName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Picture)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Discount)
-            </th>
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <h3 class="fw-bold">Нямате любими продукти</h3>
+            <p class="text-secondary">Добавете мебели в любими от страницата с продукти.</p>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrandName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Picture)"
-                         alt="Image" width="100" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Discount) %
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Детайли</a>
-                    @if (this.User.Identity.IsAuthenticated)
-                    {
-                        <a asp-action="Order" asp-route-id="@item.Id" class="btn btn-warning">Поръчай</a>
-
-
-                    }
-                    @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
-                    {
-
-                        <form asp-controller="Favorites" asp-action="Remove" method="post" class="d-inline">
-                            <input type="hidden" name="productId" value="@item.Id" />
-                            <button type="submit" class="btn btn-outline-danger">
-                                <i class="bi bi-heart"></i>Махни от любими
-                            </button>
-                        </form>
-
-
-                    }
-
-                  
-
-
-
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="btn btn-product-order px-4 mt-3">
+                Разгледай продукти
+            </a>
+        </div>
     }
-}
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 rounded-4 premium-card border-0 product-card">
+                        <img src="@item.Picture"
+                             class="card-img-top rounded-top-4"
+                             style="height:260px; object-fit:cover;"
+                             alt="@item.ProductName" />
 
+                        <div class="card-body">
+                            <p class="text-secondary mb-1">@item.CategoryName</p>
+                            <h4 class="fw-bold">@item.ProductName</h4>
+                            <p class="text-muted">@item.BrandName</p>
+
+                            <p class="text-secondary">@item.Description</p>
+
+                            <div class="d-flex justify-content-between mt-3">
+                                <span><strong>Наличност:</strong> @item.Quantity</span>
+                                <span class="fw-bold text-danger">@item.Price лв.</span>
+                            </div>
+
+                            @if (item.Discount > 0)
+                            {
+                                <div class="mt-2">
+                                    <span class="badge bg-danger">
+                                        -@item.Discount%
+                                    </span>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="card-footer bg-white border-0 pt-0 pb-4">
+                            <div class="product-actions-vertical">
+
+                                <a asp-controller="Product"
+                                   asp-action="Details"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-product-details w-100">
+                                    Детайли
+                                </a>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Order"
+                                       asp-action="Create"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-product-order w-100">
+                                        Поръчай
+                                    </a>
+                                }
+
+                                <form asp-controller="Favorites"
+                                      asp-action="Remove"
+                                      method="post"
+                                      class="w-100">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit"
+                                            class="btn btn-product-delete w-100">
+                                        Махни от любими
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

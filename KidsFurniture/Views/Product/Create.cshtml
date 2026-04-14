@@ -1,76 +1,88 @@
 ﻿@model KidsFurniture.Models.Product.ProductCreateVM
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Създай продукт";
 }
 
-<h1>Създай</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card create-product-card rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h1 class="fw-bold text-center mb-4">Създай нов продукт</h1>
+                    <p class="text-center text-secondary mb-4">
+                        Добави нов артикул към каталога на магазина.
+                    </p>
+
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ProductName" class="form-label fw-semibold">Име на продукта</label>
+                            <input asp-for="ProductName" class="form-control rounded-3" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BrandId" class="form-label fw-semibold">Производител</label>
+                            <select asp-for="BrandId" class="form-select rounded-3" asp-items="ViewBag.BrandId"></select>
+                            <span asp-validation-for="BrandId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CategoryId" class="form-label fw-semibold">Категория</label>
+                            <select asp-for="CategoryId" class="form-select rounded-3" asp-items="ViewBag.CategoryId"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Picture" class="form-label fw-semibold">Снимка (URL)</label>
+                            <input asp-for="Picture" class="form-control rounded-3" />
+                            <span asp-validation-for="Picture" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-semibold">Описание</label>
+                            <textarea asp-for="Description" class="form-control rounded-3" rows="4"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Quantity" class="form-label fw-semibold">Количество</label>
+                                <input asp-for="Quantity" class="form-control rounded-3" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Price" class="form-label fw-semibold">Цена</label>
+                                <input asp-for="Price" class="form-control rounded-3" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Discount" class="form-label fw-semibold">Отстъпка (%)</label>
+                                <input asp-for="Discount" class="form-control rounded-3" />
+                                <span asp-validation-for="Discount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-4">
+                            <button type="submit" class="btn btn-custom-primary px-4">
+                                 Създай продукт
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-product-details px-4">
+                                Назад
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="BrandId" class="control-label"></label>
-                @*<input asp-for="BrandId" class="form-control" />*@
-                <select asp-for="BrandId" class="form-control text-center">
-                    @foreach (var brand in Model.Brands)
-                    {
-                    <option value=" @brand.Id">@brand.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="BrandId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                @*<input asp-for="CategoryId" class="form-control" />*@
-                <select asp-for="CategoryId" class="form-control text-center">
-                    @foreach (var category in Model.Categories)
-                    {
-                     <option value="@category.Id">@category.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
-                <span asp-validation-for="Picture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Discount" class="control-label"></label>
-                <input asp-for="Discount" class="form-control" />
-                <span asp-validation-for="Discount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Обратно в списъка</a>
-</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

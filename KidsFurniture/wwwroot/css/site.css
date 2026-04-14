@@ -1,22 +1,328 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    background: #fcfaf7;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    border-bottom: 1px solid #eee;
+    background: white;
+}
+
+.navbar-brand {
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    color: #ff69b4 !important;
+}
+
+.nav-link {
+    font-size: 18px;
+    color: #333 !important;
+    transition: 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #ff69b4 !important;
+    }
+
+/* Dropdown */
+.dropdown-menu {
+    min-width: 260px;
+    border-radius: 16px;
+    padding: 10px;
+    border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.dropdown-item {
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+    .dropdown-item:hover {
+        background: #fff0f6;
+        color: #ff69b4;
+    }
+
+/* Navbar buttons */
+.navbar .btn,
+.btn-custom-primary {
+    background: #ff69b4 !important;
+    color: white !important;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    transition: 0.3s ease;
+}
+
+    .navbar .btn:hover,
+    .btn-custom-primary:hover {
+        background: #ff4fa3 !important;
+        color: white !important;
+    }
+
+.btn-custom-dark {
+    background: #e75480;
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    transition: 0.3s ease;
+}
+
+    .btn-custom-dark:hover {
+        background: #d63f6d;
+        color: white;
+    }
+
+/* =========================
+   HERO / CAROUSEL
+========================= */
+.hero-slide {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-text-wrapper {
+    padding-left: 140px;
+    padding-right: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slide-one {
+    background: #FFB6C1;
+}
+
+.slide-two {
+    background: #87CEEB;
+}
+
+.slide-three {
+    background: #C3B1E1;
+}
+
+.hero-organic-img {
+    width: 100%;
+    max-width: 650px;
+    height: 420px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   CATEGORY CIRCLES
+========================= */
+.category-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    background: white;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+    .category-circle:hover {
+        transform: translateY(-6px);
+    }
+
+    .category-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .category-circle span {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 18px;
+        color: #333;
+        text-align: center;
+        min-width: 180px;
+        max-width: 210px;
+        line-height: 1.3;
+        white-space: normal;
+    }
+
+/* =========================
+   CATEGORY SECTION
+========================= */
+.category-section {
+    margin-top: 40px;
+}
+
+.category-link {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+    .category-link span {
+        color: #333 !important;
+    }
+
+/* =========================
+   PRODUCT CARDS
+========================= */
+.product-card {
+    transition: 0.3s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-6px);
+    }
+
+.premium-card {
+    border: 2px solid #ffd6e8;
+    box-shadow: 0 6px 18px rgba(255, 105, 180, 0.08);
+}
+
+.product-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .product-actions-vertical .btn {
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+/* Details */
+.btn-product-details {
+    background: white;
+    color: #ff69b4;
+    border: 2px solid #ffd6e8;
+}
+
+    .btn-product-details:hover {
+        background: #fff0f6;
+        color: #ff4fa3;
+    }
+
+/* Order */
+.btn-product-order {
+    background: #ff69b4;
+    color: white;
+    border: none;
+}
+
+    .btn-product-order:hover {
+        background: #ff4fa3;
+        color: white;
+    }
+
+/* Favorite */
+.btn-product-favorite {
+    background: #ffd6e8;
+    color: #d63384;
+    border: 1px solid #ffb6d5;
+}
+
+    .btn-product-favorite:hover {
+        background: #ffc2dd;
+        color: #d63384;
+    }
+
+/* Edit */
+.btn-product-edit {
+    background: white;
+    color: #ff69b4;
+    border: 2px solid #ffd6e8;
+}
+
+    .btn-product-edit:hover {
+        background: #fff0f6;
+        color: #ff4fa3;
+    }
+
+/* Delete */
+.btn-product-delete {
+    background: #ff8fa3;
+    color: white;
+    border: none;
+}
+
+    .btn-product-delete:hover {
+        background: #ff758f;
+        color: white;
+    }
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    background: white;
+    border-top: 1px solid #eee;
+}
+.create-product-card {
+    border: 2px solid #ffd6e8;
+    box-shadow: 0 8px 24px rgba(255, 105, 180, 0.08);
+    background: white;
+}
+
+.form-control,
+.form-select {
+    padding: 12px;
+    border: 1px solid #f5c2d8;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ff69b4;
+        box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.15);
+    }
+
+.delete-product-card {
+    border: 2px solid #ffd6e8;
+    box-shadow: 0 8px 24px rgba(255, 105, 180, 0.08);
+    background: white;
+}
+
+.delete-preview-img {
+    max-height: 280px;
+    object-fit: cover;
+}
+.edit-preview-img {
+
+    max-height: 280px;
+    object-fit: cover;
+}
+.order-preview-img {
+    max-height: 320px;
+    object-fit: cover;
+}
+.order-history-card {
+    box-shadow: 0 8px 24px rgba(255, 105, 180, 0.08);
+}
+
+.order-history-img {
+    object-fit: cover;
+    min-height: 100%;
+    max-height: 260px;
+}
+.details-product-img {
+    height: 100%;
+    min-height: 500px;
+    max-height: 550px;
+    object-fit: cover;
 }

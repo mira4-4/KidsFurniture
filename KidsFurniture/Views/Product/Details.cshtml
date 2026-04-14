@@ -1,69 +1,79 @@
 ﻿@model KidsFurniture.Models.Product.ProductDetailsVM
+
 @{
     ViewData["Title"] = "Детайли";
 }
-<h1>Детайли</h1>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Html.DisplayFor(model => model.Picture)" alt="Image"
-                 width="100" />
-            @*@Html.DisplayFor(model => model.Picture)*@
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-    </dl>
+
+<div class="container py-5">
+    <div class="card premium-card rounded-4 border-0 shadow-sm">
+        <div class="row g-0 align-items-center">
+            <!-- IMAGE -->
+            <div class="col-lg-5">
+                <img src="@Model.Picture"
+                     alt="@Model.ProductName"
+                     class="img-fluid rounded-start-4 details-product-img w-100" />
+            </div>
+
+            <!-- DETAILS -->
+            <div class="col-lg-7">
+                <div class="card-body p-5">
+                    <p class="text-secondary mb-2">@Model.CategoryName</p>
+                    <h1 class="fw-bold mb-3">@Model.ProductName</h1>
+
+                    <p class="mb-3">
+                        <strong>Производител:</strong> @Model.BrandName
+                    </p>
+
+                    <p class="text-secondary mb-4">
+                        @Model.Description
+                    </p>
+
+                    <div class="d-flex gap-4 mb-4">
+                        <div>
+                            <strong>Наличност:</strong> @Model.Quantity
+                        </div>
+                        <div>
+                            <strong>Цена:</strong>
+                            <span class="text-danger fw-bold">@Model.Price лв.</span>
+                        </div>
+                    </div>
+
+                    @if (Model.Discount > 0)
+                    {
+                        <div class="mb-4">
+                            <span class="badge bg-danger fs-6 p-3 rounded-3">
+                                Отстъпка - @Model.Discount%
+                            </span>
+                        </div>
+                    }
+
+                    <div class="d-flex gap-3">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                        {
+                            <a asp-action="Edit"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-product-edit px-4">
+                                Редактирай
+                            </a>
+                        }
+
+                        <a asp-action="Index"
+                           class="btn btn-product-details px-4">
+                            Назад
+                        </a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Order"
+                               asp-action="Create"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-product-order px-4">
+                                Поръчай
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a> |
-    <a asp-action="Index">Обратно в списъка</a>
-</div>
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}   

@@ -1,68 +1,59 @@
 ﻿@model KidsFurniture.Models.Product.ProductDeleteVM
+
 @{
-    ViewData["Title"] = "Изтрий";
+    ViewData["Title"] = "Изтрий продукт";
 }
-<h1>Изтрий</h1>
-<h3>Сигурни ли сте, че искате да изтриете продукта ?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Html.DisplayFor(model => model.Picture)" alt="Image"
-                 width="100" />
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-    </dl>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card delete-product-card rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h1 class="fw-bold text-center text-danger mb-3">Изтрий продукт</h1>
+                    <p class="text-center text-secondary mb-4">
+                        Сигурни ли сте, че искате да изтриете този продукт?
+                    </p>
+
+                    <!-- PRODUCT PREVIEW -->
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-5 text-center">
+                            <img src="@Model.Picture"
+                                 alt="@Model.ProductName"
+                                 class="img-fluid rounded-4 shadow-sm delete-preview-img" />
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3 class="fw-bold">@Model.ProductName</h3>
+                            <p><strong>Производител:</strong> @Model.BrandName</p>
+                            <p><strong>Категория:</strong> @Model.CategoryName</p>
+                            <p><strong>Описание:</strong> @Model.Description</p>
+                            <p><strong>Количество:</strong> @Model.Quantity</p>
+                            <p><strong>Цена:</strong> @Model.Price лв.</p>
+                            <p><strong>Отстъпка:</strong> @Model.Discount%</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger rounded-3">
+                         Това действие е необратимо и продуктът ще бъде премахнат от каталога.
+                    </div>
+
+                    <form asp-action="Delete" class="d-flex gap-3 mt-4">
+                        <input type="hidden" asp-for="Id" />
+
+                        <button type="submit" class="btn btn-product-delete px-4">
+                             Изтрий
+                        </button>
+
+                        <a asp-action="Index" class="btn btn-product-details px-4">
+                            Назад
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

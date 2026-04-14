@@ -1,91 +1,154 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KidsFurniture</title>
+    <title>@ViewData["Title"] - 🧸 Детски мебели</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KidsFurniture.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Детски мебели</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top">
+            <div class="container-fluid px-5">
+
+                <!-- LOGO -->
+                <a class="navbar-brand fw-bold fs-2 text-warning me-4"
+                   asp-controller="Home"
+                   asp-action="Index">
+                    🧸 Детски мебели
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Privacy">Поверителност</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Продукти</a>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                Производител
+
+                <div class="collapse navbar-collapse" id="mainNav">
+
+                    <!-- LEFT MAIN -->
+                    <div class="d-flex align-items-center gap-3 me-4">
+
+                        <div class="dropdown me-3">
+                            <button class="btn btn-custom-primary dropdown-toggle"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                ☰ Категории
                             </button>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Videnov">Videnov</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Nachevi90">Nachevi90</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Kambo Furniture">Kambo Furniture</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="MIM BULGARIA">MIM BULGARIA</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Mebeliss">Mebeliss</a></li>
-                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-searchStringBrandName="Meblex">Meblex</a></li>
+                            <ul class="dropdown-menu shadow border-0 rounded-4">
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringCategoryName="Детски легла">
+                                        Детски легла
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringCategoryName="Бюра">
+                                        Бюра
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringCategoryName="Мека мебел">
+                                        Мека мебел
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringCategoryName="Гардероби и Скринове">
+                                        Гардероби и скринове
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Index"
+                                       asp-route-searchStringCategoryName="Модулни системи">
+                                        Модулни системи
+                                    </a>
+                                </li>
                             </ul>
+                        </div>
 
-                        </li>
-                       
+                        <form class="d-flex" asp-controller="Product" asp-action="Index" method="get">
+                            <input class="form-control px-4"
+                                   style="min-width:260px;border-radius:12px;"
+                                   type="search"
+                                   name="searchString"
+                                   placeholder="Търси мебели..." />
+                        </form>
 
-                        @if (this.User.Identity.IsAuthenticated)
+                        <a class="nav-link fw-semibold" asp-controller="Home" asp-action="Index">Начало</a>
+                        <a class="nav-link fw-semibold" asp-controller="Product" asp-action="Index">Продукти</a>
+
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="MyOrders">Моите поръчки</a>
-                            </li>
+                            <a class="nav-link fw-semibold" asp-controller="Order" asp-action="MyOrders">
+                                Моите поръчки
+                            </a>
+                        }
+                    </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="d-flex align-items-center gap-3 ms-auto">
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                        {
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary px-4"
+                                        style="border-radius:12px;"
+                                        data-bs-toggle="dropdown">
+                                    Админ
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
+                                    <li><a class="dropdown-item" href="/Client/Index">Клиенти</a></li>
+                                    <li><a class="dropdown-item" href="/Order/Index">Поръчки</a></li>
+                                    <li><a class="dropdown-item" href="/Statistic/Index">Статистика</a></li>
+                                </ul>
+                            </div>
                         }
 
-                        
-                        @if ((this.User.Identity.IsAuthenticated)&& (this.User.IsInRole("Administrator")))
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Статистически модул
-                            </button>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/Client/Index">Клиенти</a></li>
-                                <li><a class="dropdown-item" href="/Order/Index">Поръчки</a></li>
-                                <li><a class="dropdown-item" href="/Statistic/Index">Статистика</a></li>
-                            </ul>
-                        </li>
+                            <a class="btn px-4 py-2"
+                               style="background:#222;color:white;font-weight:600;border-radius:12px;"
+                               asp-controller="Favorites"
+                               asp-action="Index">
+                                <i class="fa-solid fa-heart me-2"></i>Любими
+                            </a>
                         }
-                    </ul>
-                    <partial name="_LoginPartial" />
+
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main role="main" class="pb-5">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top mt-5 py-4 text-center text-muted bg-white">
         <div class="container">
-            &copy; 2026 - Детски мебели - <a asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
+            &copy; 2026 - Детски мебели | Всички права запазени
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

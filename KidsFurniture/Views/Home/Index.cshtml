@@ -1,8 +1,163 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Здравейте!</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="heroCarousel" class="carousel slide rounded-4 overflow-hidden my-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active slide-one">
+            <div class="row g-0 align-items-center hero-slide">
+                <div class="col-lg-6 d-flex align-items-center">
+                    <div class="hero-text-wrapper">
+                        <p class="small text-uppercase fw-semibold mb-4" style="letter-spacing:2px;">
+                            Растем играейки
+                        </p>
+
+                        <h1 class="display-2 fw-bold mb-4" style="line-height:1.1;">
+                            Детски мебели,<br />
+                            които децата<br />
+                            обожават.
+                        </h1>
+
+                        <p class="lead fw-semibold text-dark">
+                            Красиви, безопасни и модерни мебели за детската стая.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center p-4">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+                         class="hero-organic-img"
+                         alt="Kids bed" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item slide-two">
+            <div class="row g-0 align-items-center hero-slide">
+                <div class="col-lg-6 d-flex align-items-center">
+                    <div class="hero-text-wrapper">
+                        <p class="small text-uppercase fw-semibold mb-4" style="letter-spacing:2px;">
+                            Уют и комфорт
+                        </p>
+
+                        <h1 class="display-2 fw-bold mb-4" style="line-height:1.1;">
+                            Пространства,<br />
+                            създадени за<br />
+                            щастливи деца.
+                        </h1>
+
+                        <p class="lead fw-semibold text-dark">
+                            Практични мебели за сън, игра и учене.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center p-4">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
+                         class="hero-organic-img"
+                         alt="Kids room" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-item slide-three">
+            <div class="row g-0 align-items-center hero-slide">
+                <div class="col-lg-6 d-flex align-items-center">
+                    <div class="hero-text-wrapper">
+                        <p class="small text-uppercase fw-semibold mb-4" style="letter-spacing:2px;">
+                            Стил и удобство
+                        </p>
+
+                        <h1 class="display-2 fw-bold mb-4" style="line-height:1.1;">
+                            Мебели,<br />
+                            които правят<br />
+                            дома уютен.
+                        </h1>
+
+                        <p class="lead fw-semibold text-dark">
+                            Красив интериор за модерната детска стая.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center p-4">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop"
+                         class="hero-organic-img"
+                         alt="Kids furniture" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </div>
+
+<section class="py-5 category-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-4 mb-3">Добре дошли в Детски мебели!</h2>
+            <p class="fs-4 fw-semibold text-secondary">
+                Разгледайте нашите основни категории мебели за детската стая.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center text-center">
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <a asp-controller="Product" asp-action="Index" asp-route-searchStringCategoryName="Детски легла" class="category-link">
+                    <div class="category-circle">
+                        <img src="https://www.mebeliarena.bg/image/catalog/text/detski-legla/detski-legla.jpg" />
+                        <span>Легла</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <a asp-controller="Product" asp-action="Index" asp-route-searchStringCategoryName="Бюра" class="category-link">
+                    <div class="category-circle">
+                        <img src="https://www.carmen.bg/web/img/202409/37386/38382/0/detsko-buro-s-etajerka-pollina.png" />
+                        <span>Бюра</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <a asp-controller="Product" asp-action="Index" asp-route-searchStringCategoryName="Мека мебел" class="category-link">
+                    <div class="category-circle">
+                        <img src="https://aiko-bg.com/media/catalog/product/cache/eecd2783810e9a7138851bff600dccac/b/O/bOfm6ljXhDK8w59SylTQGMK7ualvvyIe_48265180063a.jpg" />
+                        <span>Мека мебел</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <a asp-controller="Product" asp-action="Index" asp-route-searchStringCategoryName="Гардероби и Скринове" class="category-link">
+                    <div class="category-circle">
+                        <img src="https://mebelisto.bg/wp-content/uploads/2019/06/20.21.1001.00.jpg" />
+                        <span>Гардероби и скринове</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <a asp-controller="Product" asp-action="Index" asp-route-searchStringCategoryName="Модулни системи" class="category-link">
+                    <div class="category-circle">
+                        <img src="https://cdncloudcart.com/8553/products/images/24974/detsko-obzavezdane-fleks-65c24b0b5ce13_600x600.jpeg?1707232043" />
+                        <span>Модули</span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -43,12 +43,10 @@ namespace KidsFurniture.Infrastructure.Data.Infrastructure
             {
                 new Category {CategoryName="Детски легла"},
                 new Category {CategoryName="Бюра"},
-                new Category {CategoryName="Маси"},
                 new Category {CategoryName="Мека мебел"},
                 new Category {CategoryName="Гардероби и Скринове"},
-                new Category {CategoryName="Игра и Организация"},
                 new Category {CategoryName="Модулни системи"},
-                new Category {CategoryName="БИО почистване"},
+             
 
             });
             dataCategory.SaveChanges();
